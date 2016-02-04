@@ -83,14 +83,14 @@ read add
 oIFS=$IFS
 IFS=$'\n'
 
-mkdir "Metadata Added"
+mkdir "Metadata-Added"
 
 array=$(find . -maxdepth 1 -iregex '.*\(m4a\)' -print)
 for file in ${array[@]}; do
 ARTIST=`echo $file | sed "s/^\.\/\([^-]*\) - .*$/\1/"`
 TRACK=`echo $file | sed "s/^[^_]* - \(.*\)-.*$/\1/"`
 echo "[$ARTIST] [$TRACK]"
-ffmpeg -i "$file" -acodec copy -metadata title="$TRACK" -metadata artist="$ARTIST" -metadata album_artist="$ARTIST" -metadata album="$TRACK" -metadata encoder="" "Checked/$file"
+ffmpeg -i "$file" -acodec copy -metadata title="$TRACK" -metadata artist="$ARTIST" -metadata album_artist="$ARTIST" -metadata album="$TRACK" -metadata encoder="" "Metadata-Added/$file"
 done
 
 IFS=$oIFS
